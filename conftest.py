@@ -14,3 +14,12 @@ def page(browser):
     page = context.new_page()
     yield page
     context.close()
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item):
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call" and report.failed:
+        page = item.funcargs["page"]
+        page.screenshot(path=f"reports/{item.name}.png")
