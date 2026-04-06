@@ -23,15 +23,13 @@ jobs:
         pip install -r requirements.txt
 
     - name: Ensure browsers and OS dependencies are installed
-      # This installs the Linux system libraries required by Firefox and Chromium
       run: playwright install --with-deps
 
     - name: Run Playwright tests
-      # Added --headless to force the browser to run without a GUI
-      # Added --html and --self-contained-html to ensure the report is generated
       run: |
         mkdir -p reports
-        pytest --browser chromium --browser firefox --headless --html=reports/report.html --self-contained-html
+        # We no longer need to pass flags here because they are in your pytest.ini
+        pytest --browser chromium --browser firefox
 
     - name: Upload Test Report
       if: always()
