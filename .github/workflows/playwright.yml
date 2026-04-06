@@ -23,7 +23,6 @@ jobs:
         pip install -r requirements.txt
 
     - name: Ensure browsers and OS dependencies are installed
-      # We add 'xvfb' to the system install to provide a virtual display buffer
       run: |
         sudo apt-get update
         sudo apt-get install -y xvfb
@@ -32,9 +31,9 @@ jobs:
     - name: Run Playwright tests
       run: |
         mkdir -p reports
-        # xvfb-run -a creates a virtual screen (:99) so Firefox doesn't crash 
-        # looking for a DISPLAY environment variable.
-        xvfb-run -a pytest --browser chromium --browser firefox
+        # Added --screenshot only-on-failure to prevent 'waiting for fonts' timeouts
+        # on passing tests while still capturing errors.
+        xvfb-run -a pytest --browser chromium --browser firefox --screenshot only-on-failure
 
     - name: Upload Test Report
       if: always()
