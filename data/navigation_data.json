@@ -1,0 +1,13 @@
+{
+  "base_url": "https://mb.io/en-AE",
+  "nav_items": [
+    {"name": "Explore", "expected_url": "/en-AE/explore"},
+    {"name": "Features", "expected_url": "/en-AE/features"},
+    {"name": "Company", "expected_url": "/en-AE/company"},
+    {"name": "MBG", "expected_url": "token.multibankgroup.com"}
+  ],
+  "auth_items": [
+    {"name": "Sign in", "expected_url": "/login"},
+    {"name": "Sign up", "expected_url": "/signup"}
+  ]
+}

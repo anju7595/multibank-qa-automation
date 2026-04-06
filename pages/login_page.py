@@ -19,7 +19,7 @@ class LoginPage(BasePage):
     def login(self, email, password):
         self.fill(self.email, email)
         self.fill(self.password, password)
-        self.click(self.login_btn)
+        self.login_button.click()
 
     def logout(self):
         self.profile_icon.click()

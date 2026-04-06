@@ -9,7 +9,7 @@ class BasePage:
         self.page.click(locator)
 
     def fill(self, locator, text):
-        self.page.fill(locator, text)
+        locator.fill(text)
 
     def get_title(self):
         return self.page.title()
