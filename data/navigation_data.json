@@ -1,13 +1,35 @@
 {
   "base_url": "https://mb.io/en-AE",
   "nav_items": [
-    {"name": "Explore", "expected_url": "/en-AE/explore"},
-    {"name": "Features", "expected_url": "/en-AE/features"},
-    {"name": "Company", "expected_url": "/en-AE/company"},
-    {"name": "MBG", "expected_url": "token.multibankgroup.com"}
+    {
+      "name": "Explore",
+      "expected_url": "/en-AE/explore",
+      "is_external": false
+    },
+    {
+      "name": "Features",
+      "expected_url": "/en-AE/features",
+      "is_external": false
+    },
+    {
+      "name": "Company",
+      "expected_url": "/en-AE/company",
+      "is_external": false
+    },
+    {
+      "name": "MBG",
+      "expected_url": "token.multibankgroup.com",
+      "is_external": true
+    }
   ],
   "auth_items": [
-    {"name": "Sign in", "expected_url": "/login"},
-    {"name": "Sign up", "expected_url": "/signup"}
+    {
+      "name": "Sign in",
+      "expected_url": "/login"
+    },
+    {
+      "name": "Sign up",
+      "expected_url": "/signup"
+    }
   ]
 }

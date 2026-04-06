@@ -13,7 +13,6 @@ class LoginPage(BasePage):
         self.profile_icon = page.locator(".user-profile-menu")
 
     def load(self):
-        # I noticed the URL in your code changed slightly from the error log
         self.navigate("https://trade.multibank.io/login")
 
     def login(self, email, password):

@@ -1,0 +1,22 @@
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Playwright / Pytest Reports
+reports/
+test-results/
+.pytest_cache/
+*.html
+*.png
+*.log
+
+# IDE specific
+.idea/
+.vscode/

@@ -23,14 +23,13 @@ class WhyMultiLinkPage:
             # Give the UI 2 seconds to expand fully
             self.page.wait_for_timeout(2000)
 
-        # 3. MANUAL SCROLL - Move the mouse wheel in small steps
+        #  MANUAL SCROLL - Move the mouse wheel in small steps
         # This triggers lazy-loading without jumping to the bottom of the page
         for _ in range(5):
             self.page.mouse.wheel(0, 300)  # Scroll down 300 pixels
             self.page.wait_for_timeout(500)
 
-        # 4. Verify visibility WITHOUT calling 'scroll_into_view' again
-        # This prevents the "overshoot" failure
+        #  Verify visibility WITHOUT calling 'scroll_into_view' again
         expect(self.products_card.first).to_be_visible(timeout=10000)
         expect(self.liquidity_card.first).to_be_visible(timeout=10000)
 
