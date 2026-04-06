@@ -23,13 +23,18 @@ jobs:
         pip install -r requirements.txt
 
     - name: Ensure browsers and OS dependencies are installed
-      run: playwright install --with-deps
+      # We add 'xvfb' to the system install to provide a virtual display buffer
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb
+        playwright install --with-deps
 
     - name: Run Playwright tests
       run: |
         mkdir -p reports
-        # We no longer need to pass flags here because they are in your pytest.ini
-        pytest --browser chromium --browser firefox
+        # xvfb-run -a creates a virtual screen (:99) so Firefox doesn't crash 
+        # looking for a DISPLAY environment variable.
+        xvfb-run -a pytest --browser chromium --browser firefox
 
     - name: Upload Test Report
       if: always()
