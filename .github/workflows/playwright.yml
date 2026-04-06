@@ -22,10 +22,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Ensure browsers are installed
+    - name: Ensure browsers and OS dependencies are installed
+
       run: playwright install --with-deps
 
     - name: Run Playwright tests
+
       run: pytest --browser chromium --browser firefox
 
     - name: Upload Test Report
