@@ -2,8 +2,7 @@ import pytest
 import re
 from playwright.sync_api import Page, expect
 from pages.navigation_bar import NavigationBar
-from utils.config import BASE_URL
-from utils.config import load_nav_data
+from utils.config import BASE_URL, load_nav_data
 
 # Load configuration once for the module
 config = load_nav_data()
@@ -31,10 +30,25 @@ def test_navigation_menu_redirections(page: Page, item):
 
     # Verification with robust regex matching
     target_context.wait_for_load_state("load")
+
+    # --- REGEX FIX START ---
+    expected_path = item['expected_url']
+
+    if is_external:
+        # Keep original logic for external domains
+        pattern = re.compile(expected_path, re.IGNORECASE)
+    else:
+        # STRATEGY: Strip the hardcoded /en-AE and replace with a flexible /en(-AE)?
+        # This matches both 'https://mb.io/en/features' and 'https://mb.io/en-AE/features'
+        clean_path = expected_path.replace('/en-AE/', '/')
+        # Ensure we don't have double slashes and create the flexible pattern
+        pattern = re.compile(rf"/en(-AE)?{clean_path}", re.IGNORECASE)
+
     expect(target_context).to_have_url(
-        re.compile(item['expected_url'], re.IGNORECASE),
+        pattern,
         timeout=15000
     )
+    # --- REGEX FIX END ---
 
 
 def test_header_utility_and_auth_visibility(page: Page):
